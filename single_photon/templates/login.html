@@ -1,0 +1,197 @@
+<html>
+     <head>
+         <title>
+         	SINGLE PHOTON LOGIN
+         </title>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <style>
+         	#blue
+         	{
+         		background-color: rgb(30,75,102);
+         		height: 12%;
+         		margin-top: -8px;
+         		margin-left: -9px;
+         		width: 1500px; 
+            }
+            ul
+            {
+               list-style-type:none;
+               display: inline-flex;
+            }
+            li
+            {
+               color: white;
+               font-family: arial;
+            }            
+            .dropbtn 
+            {    
+                background-color: rgb(30,75,102);           
+                color: white;
+                margin-left: 900px;
+                font-size: 16px;
+                border: none;
+            }
+            .dropdown 
+            {
+                position: relative;
+                display: inline-block;
+            }
+            .dropdown-content /* Dropdown Content (Hidden by Default) */
+            {
+                display: none;
+                margin-left: 910px;
+                background-color: #f9f9f9;
+                min-width: 70px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }  
+            .dropdown-content a 
+            {
+                color: black;
+                padding: 12px;
+                text-decoration: none;
+                display: block;
+            }          
+            .dropdown-content a:hover /* Change color of dropdown links on hover */
+            {
+               background-color: #f1f1f1
+            }
+            .show/* Show the dropdown menu*/
+            {
+               display:block;
+            }
+            #login
+            {
+              margin-left: 400px;
+            }
+            .button 
+            {
+                background-color: #008CBA;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                width: 405px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                border-radius: 4px;
+            }
+            input[type=text],input[type=email]
+            {
+              border-radius: 4px;
+              border: 1px solid grey;
+              padding: 12px 14px;
+            }
+            #home,#signup
+            {
+              width:79px; 
+              height:5px;
+              padding: 20px;
+              background-color: white;
+              border: 1px solid white;
+              /*margin-right: 100px;*/
+            }
+            #signup
+            {
+              margin-top: -17px;
+            }
+         </style>
+           <script>
+               function myFunction() 
+               {
+                   document.getElementById("myDropdown").classList.toggle("show");
+               }
+               // Close the dropdown if the user clicks outside of it
+               window.onclick = function(event) {
+                 if (!event.target.matches('.dropbtn')) {
+
+                   var dropdowns = document.getElementsByClassName("dropdown-content");
+                   var i;
+                   for (i = 0; i < dropdowns.length; i++) {
+                     var openDropdown = dropdowns[i];
+                     if (openDropdown.classList.contains('show')) {
+                       openDropdown.classList.remove('show');
+                     }
+                   }
+                 }
+               }
+          function validate_form()
+          {
+            var user_name=document.getElementById("email_id").value;
+            var pwd=document.getElementById("password_id").value;
+            if(user_name=="" && pwd=="")
+            {
+              document.getElementById("errUsrName").innerHTML="Enter your Username";
+              document.getElementById("errPwdName").innerHTML="Enter your Password";
+              return false;
+            }
+            document.getElementById("errUsrName").innerHTML=null;
+            document.getElementById("errPwdName").innerHTML=null;
+
+             if(user_name=="")
+            {
+              document.getElementById("errUsrName").innerHTML="Enter your Username";
+              return false;
+            }
+            document.getElementById("errUsrName").innerHTML=null;
+
+             if(pwd=="")
+            {
+              document.getElementById("errPwdName").innerHTML="Enter your Password";
+              return false;
+            }
+            document.getElementById("errPwdName").innerHTML=null;
+          }
+            </script>
+      </head>
+
+      <body>
+      	<div id="blue">
+            <ul>
+               <li><font size="5px"><b>NEXUS</b></font></li>
+          
+               <div class="dropdown">
+                  <button onclick="myFunction()" class="dropbtn">Account&nbsp;
+                  <i class="fa fa-caret-down"></i></button>
+                 <div id="myDropdown" class="dropdown-content">
+                      <form action = "home/" method ="post">
+                      {% csrf_token %}
+                           <input type="submit" id="home" value="Home">
+                      </form>
+                      <form action = "nexus_signup_view/" method ="post">
+                      {% csrf_token %}
+                           <input type="submit" id="signup" value="Sign Up">
+                      </form>
+                 </div>
+               </div>
+            </ul>
+         </div>
+    <form action = "login/" method ="post">
+    {% csrf_token %}
+        <div id="login">
+          <br>
+          <p style="color:#2B3856"><font size="5" face="arial"><b>Welcome back!</b></font></p>
+
+         <p style="color:#2B3856"><font size="2" face="arial">Please Login</font></p>
+
+         <input type="email" placeholder="Your Email Address" size="50" style="height:40px" name ="txt_email" id="email_id"><br>
+
+         <font color="red"><label id="errUsrName"></label></font>
+          &nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+
+         <input type="text" placeholder="Password" size="50" style="height:40px" name ="txt_password" id="password_id"><br><br>
+
+         <font color="red">{{pwd_err}}</font>
+         <font color="red"><label id="errPwdName"></label></font>
+         <font color="red">{{Error}}</font>
+         <font color="red"><b>{{Email}}</b></font><br>
+         <input type="checkbox" value="" id="check2">Remember me<br><br>
+         
+         <input type="submit" class="button" id="login_submit" value="Sent" onClick="return validate_form()">
+      </div>
+    </form>
+  </body>
+</head>

@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>Confirm Email</title>
+		
+	</head>
+
+	<body>
+		
+				    			
+	    		<form action = "confirm/" method ="post">
+	    			{% csrf_token %}
+
+	    			<input type="checkbox" value='verify' id="verify_id" name='confirm_text'>Click button to verify.<br><br>
+
+	      			<input type="submit" value="Click Me" id="verify_btn" >
+	      		</form>
+			</div>	
+			
+	</body>
+</html>

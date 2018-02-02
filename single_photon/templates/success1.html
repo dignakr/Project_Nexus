@@ -1,0 +1,124 @@
+<html>
+     <head>
+         <title>
+         	SINGLE PHOTON
+         </title>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <style>
+         	#blue
+         	{
+         		background-color: rgb(30,75,102);
+         		height: 12%;
+         		margin-top: -8px;
+         		margin-left: -9px;
+         		width: 1500px; 
+            }
+            ul
+            {
+               list-style-type:none;
+               display: inline-flex;
+            }
+            li
+            {
+               color: white;
+               font-family: arial;
+            }            
+            .dropbtn 
+            {    
+                background-color: rgb(30,75,102);           
+                color: white;
+                margin-left: 900px;
+                font-size: 16px;
+                border: 1px solid rgb(30,75,102);
+            }
+            .dropdown 
+            {
+                position: relative;
+                display: inline-block;
+            }
+            .dropdown-content /* Dropdown Content (Hidden by Default) */
+            {
+                display: none;
+                margin-left: 910px;
+                background-color: #f9f9f9;
+                min-width: 70px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }  
+          /*  .dropdown-content a 
+            {
+                color: black;
+                padding: 12px;
+                text-decoration: none;
+                display: block;
+            } */         
+          /*  .dropdown-content a:hover  Change color of dropdown links on hover 
+            {
+               background-color: #f1f1f1
+            }*/
+            .show/* Show the dropdown menu*/
+            {
+               display:block;
+            }
+            #login,#signup
+            {
+              width:79px; 
+              height:5px;
+              padding: 20px;
+              background-color: white;
+              border: 1px solid white;
+              /*margin-right: 100px;*/
+            }
+            #signup
+            {
+              margin-top: -17px;
+            }
+         </style>
+           <script>
+               function myFunction() 
+               {
+                   document.getElementById("myDropdown").classList.toggle("show");
+               }
+               // Close the dropdown if the user clicks outside of it
+               window.onclick = function(event) {
+                 if (!event.target.matches('.dropbtn')) {
+
+                   var dropdowns = document.getElementsByClassName("dropdown-content");
+                   var i;
+                   for (i = 0; i < dropdowns.length; i++) {
+                     var openDropdown = dropdowns[i];
+                     if (openDropdown.classList.contains('show')) {
+                       openDropdown.classList.remove('show');
+                     }
+                   }
+                 }
+               }
+            </script>
+      </head>
+
+      <body>
+      	<div id="blue">
+            <ul>
+               <li><font size="5px"><b>NEXUS</b></font></li>
+
+               <div class="dropdown">
+                  <button onclick="myFunction()" class="dropbtn">Account&nbsp;
+                  <i class="fa fa-caret-down"></i></button>
+                 <div id="myDropdown" class="dropdown-content"> 
+                      <form action = "nexus_login_view/" method ="post">
+                      {% csrf_token %}
+                           <input type="submit" id="login" value="Login">
+                      </form>
+                      <form action = "nexus_signup_view/" method ="post">
+                      {% csrf_token %}
+                           <input type="submit" id="signup" value="Sign Up">
+                      </form>
+                 </div>
+               </div>
+            </ul>
+         </div>
+         <br>
+         <p style="color:#2B3856">&emsp;&emsp;&emsp;&emsp;&emsp;<font size="6" face="arial"><b>WELCOME !!!</b></font></p>
+      </body>
+      </html>
